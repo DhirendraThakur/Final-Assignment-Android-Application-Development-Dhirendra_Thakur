@@ -3,7 +3,7 @@ class ResponseUser{
   String? token;
 
 ResponseUser({this.success, this.token});
-factory ResponseUser.fromjson(Map<String, dynamic>json){
+factory ResponseUser.fromjson(Map<String, dynamic> json){
 return ResponseUser(
   success: json['Success'],
   token: json['token']

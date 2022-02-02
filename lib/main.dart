@@ -1,5 +1,7 @@
+import 'package:fitness/screen/dashboard.dart';
 import 'package:fitness/screen/firstpage.dart';
 import 'package:fitness/screen/login.dart';
+import 'package:fitness/screen/register.dart';
 import 'package:flutter/material.dart';
 void  main() {
   runApp(MyApp());
@@ -11,12 +13,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
       return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/':(context)=> MainScreen(),
-        'second': (context)=> Login(),
+      // initialRoute: '/',
+      // routes: {
+      //   '/':(context)=> MainScreen(),
+      //   'second': (context)=> Login(),
+      //   'third' : (context)=> Dashboard(),
        
-      },
+
+      // },
+      home: RegisterScreen(),
+     
       );
   }
 }

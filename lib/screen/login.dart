@@ -1,8 +1,10 @@
+import 'package:fitness/http/httpuser.dart';
 import 'package:flutter/material.dart';
 //import 'package:form_field_validator/form_field_validator.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:motion_toast/motion_toast.dart';
+import 'package:http/http.dart';
 
 
 
@@ -16,8 +18,15 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
 
   final _formkey = GlobalKey<FormState>();
+  final lgController = TextEditingController()..text ='Dhiren';
+  final passContoller = TextEditingController()..text ='Dhiren';
   String email = '';
   String password = '';
+  Future <bool> loginPost(String email, String password){
+    var res = HttpConnectUser().loginPosts(email, password);
+    return res;
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +44,7 @@ class _LoginState extends State<Login> {
                   ),
                   const SizedBox(height: 30),
                   TextFormField(
+                    controller: lgController,
                     onSaved: (value) {
                       email = value!;
                     },
@@ -53,7 +63,9 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   const SizedBox(height: 15),
+
                   TextFormField(
+                    controller: passContoller,
                     onSaved: (value) {
                       password = value!;
                     },
@@ -74,22 +86,26 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   const SizedBox(height: 15),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 50)),
-                    onPressed: () {
-                      if (_formkey.currentState!.validate()) {
-                        _formkey.currentState!.save();
-                        Fluttertoast.showToast(msg: 'Successfull');
-                      } else {
-                        Fluttertoast.showToast(
-                            msg: 'Unsuccessfull',
-                            toastLength: Toast.LENGTH_LONG,
-                            backgroundColor: Colors.red);
-                      }
-                    },
-                    child: const Text('Submit'),
-                  ),
+                 ElevatedButton(
+                   style: ElevatedButton.styleFrom(
+                     minimumSize:  const Size(double.infinity,50), 
+                   ),
+                   onPressed: () async {
+                     _formkey.currentState!.save();
+                     var res = await loginPost(email, password);
+                     if (res){
+                       Navigator.pushNamed(context, '/third');
+                       MotionToast.success(description: 'Login Success!!!')
+                       .show(context);
+                     }
+                     else{
+                       MotionToast.success(description: 'Some things went wrong')
+                       .show(context);
+                     }
+
+                   }, child: Text('Login')),
+
+
                   const SizedBox(height: 15),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
