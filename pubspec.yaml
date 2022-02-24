@@ -29,6 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  footer:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -38,10 +39,15 @@ dependencies:
   fluttertoast: ^8.0.8
   motion_toast: ^2.0.0
   http: ^0.13.4
+  image_picker: ^0.8.4+5
+  json_annotation: ^4.4.0
+  flutter_svg: ^1.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+    
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -49,6 +55,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  build_runner: ^2.1.7
+  json_serializable: ^6.1.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -64,6 +72,12 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - images/fi.jpg
+  - images/profile_image.png
+  - images/dum.jpg
+  - images/health.jpeg
+  - images/product.jpg
+  - images/profile.png
+  - images/background.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
