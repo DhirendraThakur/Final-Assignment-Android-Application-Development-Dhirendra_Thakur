@@ -127,7 +127,6 @@ class _SupplementAddState extends State<SupplementAdd> {
                         productprice: productprice,
                         producttype: producttype,
                       );
-                      print(productname);
                       HttpProduct().registerProduct(product, _image);
                     }
                   },
@@ -164,11 +163,17 @@ class _SupplementAddState extends State<SupplementAdd> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    _imageFromCamera();
+                    Navigator.pop(context);
+                  },
                   icon: Icon(Icons.image),
                   label: Text('Camera')),
               ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    _imageFromGallery();
+                    Navigator.pop(context);
+                  },
                   icon: Icon(Icons.image),
                   label: Text('Gallery'))
             ],

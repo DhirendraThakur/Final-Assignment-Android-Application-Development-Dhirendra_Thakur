@@ -4,7 +4,7 @@ import 'package:fitness/response/response.dart';
 import 'package:http/http.dart' as http;
 
 class HttpConnectUser {
-  String baseurl = 'http://192.168.1.65:3500/';
+  String baseurl = 'http://127.0.0.1:3500/';
 
   // String baseurl ='http:localhost:3000/api/v1';
   //String baseurl ='http://jsonplaceholder.typicode.com/api/v1';
