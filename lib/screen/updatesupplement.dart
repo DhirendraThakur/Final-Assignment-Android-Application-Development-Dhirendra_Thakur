@@ -1,15 +1,14 @@
 import 'dart:io';
 
+import 'package:fitness/http/httpproduct.dart';
 import 'package:fitness/http/httpsupplement.dart';
-import 'package:fitness/model/supplement.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:fitness/model/product.dart';
-
+import 'package:fitness/model/supplement.dart';
 
 class UpdateSupplement extends StatefulWidget {
-
-  const UpdateSupplement({Key? key}) : super(key: key);
+  const UpdateSupplement({Key? key,  required this.supplement}) : super(key: key);
+  final Supplement supplement;
 
   @override
   _UpdateSupplementState createState() => _UpdateSupplementState();
@@ -21,6 +20,7 @@ class _UpdateSupplementState extends State<UpdateSupplement> {
   String supplementtype = "";
   String supplementrate = "";
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,50 +30,52 @@ class _UpdateSupplementState extends State<UpdateSupplement> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Form(
-            child: Column(
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                'Update Supplement Details',
-                style: TextStyle(
+          key: _formkey,
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  'Update Supplement Details',
+                  style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.blue,
-                    letterSpacing: 5.0),
+                    letterSpacing: 5.0,
+                  ),
+                ),
               ),
-            ),
-            TextFormField(
-              onSaved: (value) {
-                supplementname = value!;
-              },
-              maxLength: 30,
-              decoration: InputDecoration(
-                  labelText: 'Supplement Name',
-                  hintText: 'Enter Supplement Name'),
-            ),
-            TextFormField(
-              onSaved: (value) {
-                supplementrate = value!;
-              },
-              maxLength: 30,
-              decoration: InputDecoration(
-                  labelText: 'Supplement Rate',
-                  hintText: 'Enter Supplement Rate'),
-            ),
-            TextFormField(
-              onSaved: (value) {
-                supplementtype = value!;
-              },
-              maxLength: 30,
-              decoration: InputDecoration(
-                  labelText: 'Supplement Rate',
-                  hintText: 'Enter Suppltment Rate'),
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            ElevatedButton(
+              TextFormField(
+                initialValue: widget.supplement.supplementname,
+                onSaved: (value) {
+                  supplementname = value!;
+                },
+                maxLength: 30,
+                decoration: InputDecoration(
+                    labelText: 'Supplement Name', hintText: 'Enter Product Name'),
+              ),
+              TextFormField(
+                initialValue: widget.supplement.supplementrate,
+                onSaved: (value) {
+                  supplementrate = value!;
+                },
+                maxLength: 30,
+                decoration: InputDecoration(
+                    labelText: 'Supplement Rate', hintText: 'Enter Supplement Rate'),
+              ),
+              TextFormField(
+                initialValue: widget.supplement.supplementtype,
+                onSaved: (value) {
+                  supplementtype = value!;
+                },
+                maxLength: 30,
+                decoration: InputDecoration(
+                    labelText: 'Supplement Type', hintText: 'Enter Supplement Type'),
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+              ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 50)),
                 onPressed: () {
@@ -82,16 +84,17 @@ class _UpdateSupplementState extends State<UpdateSupplement> {
                     supplementname: supplementname,
                     supplementrate: supplementrate,
                     supplementtype: supplementtype,
-                    //productdesc: productdesc
                   );
-                  //  HttpProduct().registerProduct(product,productname);
+                  httpSupplement().updateSupplement(supplement,widget.supplement.id);
                 },
-                child: Text('Update')),
-            const SizedBox(
-              height: 10,
-            ),
-          ],
-        )),
+                child: Text('Update'),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
