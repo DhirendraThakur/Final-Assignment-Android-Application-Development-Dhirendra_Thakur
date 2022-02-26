@@ -3,7 +3,6 @@
 import 'package:fitness/http/httpproduct.dart';
 import 'package:fitness/model/product.dart';
 import 'package:fitness/screen/updateproduct.dart';
-import 'package:fitness/screen/updatesupplement.dart';
 import 'package:flutter/material.dart';
 
 class DisplayProduct extends StatefulWidget {
