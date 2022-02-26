@@ -25,22 +25,27 @@ class _MainScreenState extends State<MainScreen> {
                   height: 50,
                 ),
                 InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/register');
-                    },
-                    child: RichText(
-                        text: TextSpan(children: const [
-                      TextSpan(
-                        text: '',
-                        style: TextStyle(fontSize: 20, color: Colors.blue),
-                      ),
-                      TextSpan(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/register');
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      children: const [
+                        TextSpan(
+                          text: '',
+                          style: TextStyle(fontSize: 20, color: Colors.blue),
+                        ),
+                        TextSpan(
                           text: 'Sign Up!!!',
                           style: TextStyle(
                             fontSize: 30,
                             color: Colors.red,
-                          ))
-                    ]))),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: 50,
                 ),
@@ -105,6 +110,57 @@ class _MainScreenState extends State<MainScreen> {
                       children: const [
                         TextSpan(
                           text: 'Show Product',
+                          style:
+                              TextStyle(fontSize: 20, color: Colors.blueAccent),
+                        ),
+                        TextSpan(
+                          text: '',
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.purple,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/supplement/add');
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      children: const [
+                        TextSpan(
+                          text: 'Add Supplement',
+                          style:
+                              TextStyle(fontSize: 20, color: Colors.blueAccent),
+                        ),
+                        TextSpan(
+                          text: '',
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.purple,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),SizedBox(
+                  height: 50,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/supplement/show');
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      children: const [
+                        TextSpan(
+                          text: 'Show Supplement',
                           style:
                               TextStyle(fontSize: 20, color: Colors.blueAccent),
                         ),

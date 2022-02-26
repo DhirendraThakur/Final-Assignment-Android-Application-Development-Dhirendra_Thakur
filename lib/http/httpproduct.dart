@@ -2,19 +2,20 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:fitness/db/ProductDatabase.dart';
 import 'package:fitness/http/httpuser.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:fitness/model/product.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../response/getproduct_resp.dart';
 
 class HttpProduct {
-  final baseurl = 'http://192.168.1.65:3500/';
+  final baseurl = 'http://127.0.0.1:3500/';
   String mytoken = HttpConnectUser.token;
-
   Future<String> uploadImage(String filepath, String id) async {
     try {
       String route = 'product/' + id + '/photo/upload';
@@ -64,11 +65,12 @@ class HttpProduct {
       });
       if (response.statusCode == 200) {
 // uploading imgae after data inserted of product
-        if (filepath != null) {
-          var jsonData = jsonDecode(response.body);
-          uploadImage(filepath.path, jsonData['data']['_id']);
-        }
-
+//         if (filepath != null) {
+//           var jsonData = jsonDecode(response.body);
+//           uploadImage(filepath.path, jsonData['data']['_id']);
+//         }
+        var jsonData = jsonDecode(response.body);
+        ProductDatabase.instance.create(jsonData['data']);
         Fluttertoast.showToast(msg: "Data upload Successfully");
       }
     } catch (err) {
@@ -83,9 +85,8 @@ class HttpProduct {
           await http.get(Uri.parse(baseurl + 'product/all'), headers: {
         'Authorization': token,
       });
-      print(response.statusCode);
-      print(jsonDecode(response.body));
       if (response.statusCode == 200) {
+        print(response.body);
         var products = ResponseGetProduct.fromJson(jsonDecode(response.body));
         return products.data;
       }
@@ -118,7 +119,6 @@ class HttpProduct {
   }
 
   void deleteProduct(id) async{
-    print(id);
     String tok = 'Bearer $mytoken';
     try {
       final response = await http
