@@ -1,70 +1,57 @@
-
 import 'dart:convert';
 import 'package:fitness/model/user.dart';
 import 'package:fitness/response/response.dart';
-import 'package:http/http.dart';
-//import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 
-
-class HttpConnectUser{
- String baseurl ='http:192.168.1.67:3000/api/v1/';
+class HttpConnectUser {
+  String baseurl = 'http://192.168.1.65:3500/';
 
   // String baseurl ='http:localhost:3000/api/v1';
   //String baseurl ='http://jsonplaceholder.typicode.com/api/v1';
- //String baseurl ='http:/localhost:3000/api/v1/';
+  //String baseurl ='http:/localhost:3000/api/v1/';
 //  String baseurl = 'localhost:3000/api/v1/';
 
-  static String token ='';
+  static String token = '';
 
   //sending data to the server-- creating user
-  Future<bool> registerPost(User user)async{
+  Future<bool> registerPost(User user) async {
     Map<String, dynamic> userMap = {
-      "fname": user.fname,
-      "lname": user.lname,
-      "email": user.email,
+      "username": user.username,
       "password": user.password,
+      "address": user.address,
+      "phone": user.phone,
     };
-    final response = 
-    await post(Uri.parse(baseurl+ 'auth/register'), body: userMap);
-   if(response.statusCode == 200){
-    var userRes = ResponseUser.fromjson(jsonDecode(response.body));
-    return userRes.success!;
+    final response = await http.post(Uri.parse(baseurl + 'customer/register'),
+        body: userMap);
+    if (response.statusCode == 200) {
+      final userRes = jsonDecode(response.body);
+      return userRes['success'];
+    } else {
+      return false;
+    }
   }
-  else {
-    return false;
-  }
-}
 
 // sending data to the server= login as user
 
-Future<bool> loginPosts (String email, String password) async {
-  Map<String, dynamic> LoginUser = {
+  Future<bool> loginPosts(String username, String password) async {
+    try {
+      final response = await http.post(Uri.parse(baseurl + "customer/login"),
+          headers: <String, String>{
+            'Content-Type': "application/json; charset=UTF-8"
+          },
+          body: jsonEncode(
+              <String, String>{"username": username, "password": password}));
 
-    'email': email,
-    'password': password
-  };
-  try {
-    final response = await post(
-      Uri.parse(
-        baseurl + "auth/login",
-
-      ),
-      body: LoginUser
-    );
-    //kjson serializing inline
-    final jsonData = jsonDecode(response.body) as Map;
-    token = jsonData ['token'];
-
-    if (jsonData['success']){
-      return true;
+      if (response.statusCode == 200) {
+        final jsonData = jsonDecode(response.body);
+        token = jsonData['token'];
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e);
     }
-
+    return false;
   }
-  catch(e){
-    print(e);
-  }
-  return false;
 }
-
-}
-

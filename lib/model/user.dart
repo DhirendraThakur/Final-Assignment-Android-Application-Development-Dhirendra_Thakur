@@ -1,7 +1,7 @@
 class User{
-  final String? fname;
-  final String? lname;
-  final String? email;
+  final String? username;
   final String? password;
-  User ({this.fname, this.lname, this.email, this.password});
+  final String? phone;
+  final String? address;
+  User ({this.username, this.password, this.address, this.phone});
 }

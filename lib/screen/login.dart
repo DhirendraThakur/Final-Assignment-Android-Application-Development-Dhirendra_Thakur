@@ -18,8 +18,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
 
   final _formkey = GlobalKey<FormState>();
-  final lgController = TextEditingController()..text ='Dhiren';
-  final passContoller = TextEditingController()..text ='Dhiren';
+  final lgController = TextEditingController()..text ='admin';
+  final passContoller = TextEditingController()..text ='admin';
   String email = '';
   String password = '';
   Future <bool> loginPost(String email, String password){
