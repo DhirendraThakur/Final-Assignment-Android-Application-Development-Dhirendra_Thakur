@@ -10,7 +10,7 @@ class Product{
   String? productname;
   String? producttype;
   String? productrate;
-  String? productdesc;
+ // String? productdesc;
   String? photo;
   String? createAt;
   
@@ -19,7 +19,7 @@ Product({
   this.productname,
   this.producttype,
   this.productrate,
-  this.productdesc,
+ // this.productdesc,
   this.photo,
   this.createAt
 });

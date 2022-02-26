@@ -6,20 +6,20 @@ import 'package:image_picker/image_picker.dart';
 import 'package:fitness/model/product.dart';
 
 
-class SupplementAdd extends StatefulWidget {
-  const SupplementAdd({ Key? key }) : super(key: key);
+class ProductAdd extends StatefulWidget {
+  const ProductAdd({ Key? key }) : super(key: key);
  
   @override
-  _SupplementAddState createState() => _SupplementAddState();
+  _ProductAddState createState() => _ProductAddState();
 }
 
-class _SupplementAddState extends State<SupplementAdd> {
+class _ProductAddState extends State<ProductAdd> {
  final _formkey = GlobalKey<FormState>();
  File? _image;
  String productname="";
  String producttype="";
  String productrate="";
- String productdesc="";
+ //String productdesc="";
 @override
 void initState(){
   super.initState();
@@ -92,23 +92,23 @@ hintText: 'Enter Product Rate'),
 ),
 
 
-TextFormField(
-onSaved: (value){
-  producttype = value!; 
-},
-maxLength: 30,
-decoration:  InputDecoration(labelText: 'Product Type',
-hintText: 'Enter Product Type'),
-),
+// TextFormField(
+// onSaved: (value){
+//   producttype = value!; 
+// },
+// maxLength: 30,
+// decoration:  InputDecoration(labelText: 'Product Type',
+// hintText: 'Enter Product Type'),
+// ),
 
-TextFormField(
-onSaved: (value){
-  productdesc= value!; 
-},
-maxLength: 30,
-decoration:  InputDecoration(labelText: 'Product Descriptions',
-hintText: 'Enter Product Descriptions'),
-),
+// TextFormField(
+// onSaved: (value){
+//   productdesc= value!; 
+// },
+// maxLength: 30,
+// decoration:  InputDecoration(labelText: 'Product Descriptions',
+// hintText: 'Enter Product Descriptions'),
+// ),
     
     SizedBox(height: 30.0,),
     ElevatedButton(
@@ -121,7 +121,9 @@ hintText: 'Enter Product Descriptions'),
           productname: productname,
           productrate: productrate,
           producttype: producttype,
-          productdesc: productdesc);
+          //productdesc: productdesc
+          
+          );
           HttpProduct().registerProduct(product, _image);
         
 

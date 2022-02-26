@@ -38,7 +38,7 @@ void initState(){
                     padding: EdgeInsets.only(top: 10.0),
                     child: ListTile(
                       title: Text('$index'),
-                      subtitle: Text('${snapshot.data![index].productname} \t ${snapshot.data![index].productdesc}'),
+                      subtitle: Text('${snapshot.data![index].productname} \t ${snapshot.data![index].producttype}'),
                     ),
                     );
                 },

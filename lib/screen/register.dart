@@ -14,11 +14,11 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final regform = GlobalKey<FormState>();
 
-String fname='';
-String lname='';
-String email='';
-String password='';
-  Future<bool>registerUser(User u){
+String fname = '';
+String lname = '';
+String email = '';
+String password = '';
+  Future<bool> registerUser(User u){
     var res = HttpConnectUser().registerPost(u);
     return res;
   } 
@@ -30,7 +30,7 @@ String password='';
         elevation: 0,
         leading: IconButton(icon:  Icon(Icons.menu, color: Colors.blue, size: 30), onPressed: (){},),
         title: const Text('Registration', style: TextStyle(color:Colors.black),),
-        actions: [Padding(padding: const EdgeInsets.all(15.0),
+      actions: [Padding(padding: const EdgeInsets.all(15.0),
             child: Icon(Icons.notifications, size: 30, color: Colors.deepOrange, ),
           ),
         ],
@@ -42,12 +42,12 @@ String password='';
          SizedBox(height: 15,),
 
          TextFormField(
-           onSaved :(value){
+           onSaved :(value) {
              fname = value!;
            },
-           validator: (value){
-             if (value == null || value.isEmpty){return "Field canno be empty";}
-           },
+          //  validator: (value){
+          //    if (value == null || value.isEmpty){return "Field canno be empty";}
+          //  },
             decoration: InputDecoration(labelText: "First name",
              border: UnderlineInputBorder(),
               icon: Icon(Icons.person), ), ),
@@ -55,34 +55,34 @@ String password='';
              SizedBox(height: 15,),
            
              TextFormField(
-               onSaved: (value){
+               onSaved: (value) {
                  lname = value!;
                },
-               validator: (value){
-             if (value == null || value.isEmpty){return "Field canno be empty";}
-           },
+          //      validator: (value){
+          //    if (value == null || value.isEmpty){return "Field canno be empty";}
+          //  },
             decoration: InputDecoration(labelText: "Last name",
              border: UnderlineInputBorder(), icon: Icon(Icons.person), ), ),
          
           SizedBox(height: 15,),
 
     TextFormField(
-      onSaved: (value){
-        email =value!;
+      onSaved: (value) {
+        email = value!;
       },
-      validator: (value){
-             if (value == null || value.isEmpty){return "Field canno be empty";}
-           },
+      // validator: (value){
+      //        if (value == null || value.isEmpty){return "Field canno be empty";}
+      //      },
             decoration: InputDecoration(labelText: "Email",
              border: UnderlineInputBorder(), icon: Icon(Icons.email), ), ),
 
              TextFormField(
-               onSaved: (value){
+               onSaved : (value ){
                  password = value!;
                },
-               validator: (value){
-             if (value == null || value.isEmpty){return "Field canno be empty";}
-           },
+          //      validator: (value){
+          //    if (value == null || value.isEmpty){return "Field canno be empty";}
+          //  },
             decoration: InputDecoration(labelText: "Password",
          
              border: UnderlineInputBorder(), icon: Icon(Icons.lock,), ), ),

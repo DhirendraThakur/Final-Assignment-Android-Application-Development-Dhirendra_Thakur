@@ -1,6 +1,7 @@
 import 'package:fitness/screen/dashboard.dart';
 import 'package:fitness/screen/firstpage.dart';
 import 'package:fitness/screen/login.dart';
+import 'package:fitness/screen/product.dart';
 import 'package:fitness/screen/register.dart';
 import 'package:flutter/material.dart';
 void  main() {
@@ -16,12 +17,14 @@ class MyApp extends StatelessWidget {
       // initialRoute: '/',
       // routes: {
       //   '/':(context)=> MainScreen(),
-      //   'second': (context)=> Login(),
-      //   'third' : (context)=> Dashboard(),
-       
+      //   '/login': (context)=> Login(),
+      //   '/third' : (context)=> Dashboard(),
+      //  '/register' : (context)=> RegisterScreen()
 
-      // },
-      home: RegisterScreen(),
+      //  },
+    // home: RegisterScreen(),
+     // home : Dashboard(),
+      home: ProductAdd()
      
       );
   }

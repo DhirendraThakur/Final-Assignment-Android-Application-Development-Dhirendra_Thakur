@@ -55,7 +55,7 @@ void registerProduct (Product product, File? filepath) async{
     'productname' : product.productname,
     'productrate' : product.productrate,
     'producttype' : product.producttype,
-    'productdesc' : product.productdesc,
+   // 'productdesc' : product.productdesc,
   };
   String tok = 'Bearer $mytoken';
   try{

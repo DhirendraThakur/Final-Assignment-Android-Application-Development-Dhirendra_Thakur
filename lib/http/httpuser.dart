@@ -3,17 +3,22 @@ import 'dart:convert';
 import 'package:fitness/model/user.dart';
 import 'package:fitness/response/response.dart';
 import 'package:http/http.dart';
+//import 'package:http/http.dart' as http;
+
 
 class HttpConnectUser{
-  //String baseurl ='http://10.0.2.2:3000/api/v1';
+ String baseurl ='http:192.168.1.67:3000/api/v1/';
+
   // String baseurl ='http:localhost:3000/api/v1';
-  String baseurl ='http://ip-api.com/json';
+  //String baseurl ='http://jsonplaceholder.typicode.com/api/v1';
+ //String baseurl ='http:/localhost:3000/api/v1/';
+//  String baseurl = 'localhost:3000/api/v1/';
 
   static String token ='';
 
   //sending data to the server-- creating user
-  Future<bool>registerPost(User user)async{
-    Map<String, dynamic>userMap = {
+  Future<bool> registerPost(User user)async{
+    Map<String, dynamic> userMap = {
       "fname": user.fname,
       "lname": user.lname,
       "email": user.email,
@@ -33,7 +38,7 @@ class HttpConnectUser{
 // sending data to the server= login as user
 
 Future<bool> loginPosts (String email, String password) async {
-  Map<String, dynamic> LoginUser ={
+  Map<String, dynamic> LoginUser = {
 
     'email': email,
     'password': password
@@ -44,13 +49,13 @@ Future<bool> loginPosts (String email, String password) async {
         baseurl + "auth/login",
 
       ),
-      body:  LoginUser
+      body: LoginUser
     );
     //kjson serializing inline
     final jsonData = jsonDecode(response.body) as Map;
     token = jsonData ['token'];
 
-    if (token.isNotEmpty){
+    if (jsonData['success']){
       return true;
     }
 
