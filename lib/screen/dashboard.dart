@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
 
-//import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 //import 'package:timezone/timezone.dart' as tz;
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -45,6 +46,20 @@ class _DashboardState extends State<Dashboard> {
 //      scheduledTime, generalNotificationDetails);
   //}
 
+  void notify() async {
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+          id: 1,
+          channelKey: 'key1',
+          title: 'Title for your notification',
+          body: 'body text/ content',
+          notificationLayout: NotificationLayout.BigPicture,
+          bigPicture:
+          'https://images.idgesg.net/images/article/2019/01/android-q-notification-inbox-100785464-large.jpg?auto=webp&quality=85,70'),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -55,7 +70,9 @@ class _DashboardState extends State<Dashboard> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.fitness_center, color: Colors.blue, size: 30),
-          onPressed: () {},
+          onPressed: () {
+            notify();
+          },
         ),
         title: const Text(
           'FIT-NESS  DashBoard',
@@ -201,7 +218,9 @@ class _DashboardState extends State<Dashboard> {
                 child: IconButton(
                   icon: Icon(Icons.notification_add,
                       color: Colors.blue, size: 30),
-                  onPressed: () {},
+                  onPressed: () {
+                    print("reached");
+                  },
                 ),
               ),
             ),
@@ -213,7 +232,7 @@ class _DashboardState extends State<Dashboard> {
               Padding(
                 padding: EdgeInsets.only(top: 600.0),
                 child: Center(
-                  child: Text(''),
+                  child: Text('+'),
                 ),
               ),
             ],
@@ -250,23 +269,7 @@ class _DashboardState extends State<Dashboard> {
       case 2:
         Navigator.pushNamed(context, '/sensor');
         break;
-
-        Future notificationSelected(String payload) async {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: Text("Notification : $payload"),
-            ),
-          );
-        }
     }
 
-    void onSelected(BuildContext context, int item) {
-      switch (item) {
-        case 0:
-          Navigator.pushNamed(context, '/register');
-          break;
-      }
-    }
   }
 }
