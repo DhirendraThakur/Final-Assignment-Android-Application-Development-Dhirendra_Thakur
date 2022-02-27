@@ -27,6 +27,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.red[50],
+      
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -69,8 +71,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   //    if (value == null || value.isEmpty){return "Field canno be empty";}
                   //  },
                   decoration: InputDecoration(
+                    
                     labelText: "Username",
-                    border: UnderlineInputBorder(),
+                    border:OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                    fillColor: Colors.lime,
                     icon: Icon(Icons.person),
                   ),
                 ),
@@ -85,8 +89,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   //    if (value == null || value.isEmpty){return "Field canno be empty";}
                   //  },
                   decoration: InputDecoration(
+                     border:OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
                     labelText: "Password",
-                    border: UnderlineInputBorder(),
+                   // border: UnderlineInputBorder(),
                     icon: Icon(Icons.person),
                   ),
                 ),
@@ -102,9 +107,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   //      },
                   decoration: InputDecoration(
                     labelText: "Phone",
-                    border: UnderlineInputBorder(),
+                     border:OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
                     icon: Icon(Icons.email),
                   ),
+                ),
+                 SizedBox(
+                  height: 15,
                 ),
                 TextFormField(
                   onSaved: (value) {
@@ -115,7 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   //  },
                   decoration: InputDecoration(
                     labelText: "Address",
-                    border: UnderlineInputBorder(),
+                     border:OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
                     icon: Icon(
                       Icons.lock,
                     ),
@@ -125,8 +133,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 50,
                 ),
                 ElevatedButton(
+
                     style: ElevatedButton.styleFrom(
+                primary: Colors.redAccent,      
                       minimumSize: const Size(double.infinity, 50),
+                      
                     ),
                     onPressed: () async {
                       if (regform.currentState!.validate()) {

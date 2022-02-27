@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+//import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 //import 'package:timezone/timezone.dart' as tz;
-
-
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -18,36 +16,33 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  // FlutterLocalNotificationsPlugin? fltrNotification;
+// FlutterLocalNotificationsPlugin? fltrNotification;
+// @override
+//  void initState() {
+//    super.initState();
+//    var androidInitilize = new AndroidInitializationSettings('app_icon');
+//    var iOSinitilize = new IOSInitializationSettings();
+//    var initilizationsSettings =
+//        new InitializationSettings(android: androidInitilize, iOS: iOSinitilize);
+//    fltrNotification = new FlutterLocalNotificationsPlugin();
+//    fltrNotification!.initialize(initilizationsSettings, onSelectNotification: notificationSelected);
+//  }
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     var androidInitilize = new AndroidInitializationSettings('app_icon');
-//     var iOSinitilize = new IOSInitializationSettings();
-//     var initilizationsSettings = new InitializationSettings(
-//         android: androidInitilize, iOS: iOSinitilize);
-//     fltrNotification = new FlutterLocalNotificationsPlugin();
-//     fltrNotification!.initialize(initilizationsSettings,
-//         onSelectNotification: notificationSelected);
-//   }
-//
-//   Future _showNotification() async {
-//     var androidDetails = AndroidNotificationDetails("Channel ID", "Fitness",
-//         importance: Importance.max);
-//     var iSODetails = new IOSNotificationDetails();
-//     var generalNotificationDetails =
-//         new NotificationDetails(android: androidDetails, iOS: iSODetails);
-//
-//     // await fltrNotification.show(
-//     //     0, "Task", "You created a Task",
-//     //     generalNotificationDetails, payload: "Task");
-//
-// //     var scheduledTime = DateTime.now().add(Duration(seconds : 5));
-//
-// //  fltrNotification.sch(1, "Times Uppp", task,
-// //      scheduledTime, generalNotificationDetails);
-//   }
+// Future _showNotification() async {
+//    var androidDetails = AndroidNotificationDetails(
+//        "Channel ID", "Fitness", importance: Importance.max);
+//    var iSODetails = new IOSNotificationDetails();
+//    var generalNotificationDetails = new NotificationDetails(android: androidDetails, iOS: iSODetails);
+
+  // await fltrNotification.show(
+  //     0, "Task", "You created a Task",
+  //     generalNotificationDetails, payload: "Task");
+
+//     var scheduledTime = DateTime.now().add(Duration(seconds : 5));
+
+//  fltrNotification.sch(1, "Times Uppp", task,
+//      scheduledTime, generalNotificationDetails);
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -177,16 +172,34 @@ class _DashboardState extends State<Dashboard> {
           Center(
               child: Padding(
             padding: const EdgeInsets.all(18.0),
+            child: Container(
+                child: Align(
+              alignment: Alignment.bottomRight,
+              child: CircleAvatar(
+                backgroundColor: Colors.blue,
+                radius: 30,
+                child: IconButton(
+                  icon: Icon(Icons.notification_add,
+                      color: Colors.blue, size: 30),
+                  onPressed: () {},
+                ),
+              ),
+            )),
+          )),
+
+          Center(
+              child: Padding(
+            padding: const EdgeInsets.all(18.0),
             child: Align(
               alignment: Alignment.bottomRight,
               child: CircleAvatar(
-            backgroundColor: Colors.blue,
-            radius: 30,
-            child: IconButton(
-              icon: Icon(Icons.notification_add,
-                  color: Colors.blue, size: 30),
-              onPressed: (){},
-            ),
+                backgroundColor: Colors.blue,
+                radius: 30,
+                child: IconButton(
+                  icon: Icon(Icons.notification_add,
+                      color: Colors.blue, size: 30),
+                  onPressed: () {},
+                ),
               ),
             ),
           )),
@@ -212,21 +225,38 @@ class _DashboardState extends State<Dashboard> {
     );
     //default flex is 2
   }
+//   Future  notificationSelected(String payload) async {
+//    showDialog(
+//      context: context,
+//      builder: (context) => AlertDialog(
+//        content: Text("Notification : $payload"),
+//      ),
+//    );
+//  }
+// }
 
-  Future notificationSelected(String payload) async {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: Text("Notification : $payload"),
-      ),
-    );
-  }
-}
+  void onSelected(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        Navigator.pushNamed(context, '/register');
+        break;
 
-void onSelected(BuildContext context, int item) {
-  switch (item) {
-    case 0:
-      Navigator.pushNamed(context, '/register');
-      break;
+        Future notificationSelected(String payload) async {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              content: Text("Notification : $payload"),
+            ),
+          );
+        }
+    }
+
+    void onSelected(BuildContext context, int item) {
+      switch (item) {
+        case 0:
+          Navigator.pushNamed(context, '/register');
+          break;
+      }
+    }
   }
 }

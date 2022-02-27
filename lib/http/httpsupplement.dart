@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:fitness/model/supplement.dart';
+import '../response/getsupplement_resp.dart';
+
 
 import '../response/getsupplement_resp.dart';
 
@@ -116,6 +118,42 @@ class httpSupplement {
     }
   }
 
+Future<List<Supplement>>? getSupplement() async {
+    String token = 'Bearer $mytoken';
+    try {
+      final response =
+          await http.get(Uri.parse(baseurl + 'product/all'), headers: {
+        'Authorization': token,
+      });
+      print(response.statusCode);
+      print(jsonDecode(response.body));
+      if (response.statusCode == 200) {
+        var products = ResponseGetSupplement.fromJson(jsonDecode(response.body));
+        return products.data;
+      }
+      return [];
+    } catch (e) {
+      log('Get Products: $e');
+      return [];
+    }
+  }
+
+ void deleteSupplement(id) async{
+    print(id);
+    String tok = 'Bearer $mytoken';
+    try {
+      final response = await http
+          .delete(Uri.parse(baseurl + 'supplement/delete/' + id), headers: {
+        'Authorization': tok,
+      });
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        Fluttertoast.showToast(msg: "Data deleted Successfully");
+      }
+    } catch (err) {
+      log('Product Delete : $err');
+
+    }
 
   void deleteSupplement(id) async{
     String tok = 'Bearer $mytoken';
@@ -133,4 +171,5 @@ class httpSupplement {
     }
 
   }
+}
 }

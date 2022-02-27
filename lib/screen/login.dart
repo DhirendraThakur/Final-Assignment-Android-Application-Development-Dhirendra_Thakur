@@ -30,9 +30,11 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+ //  backgroundColor: Colors.brown,
    
         appBar: AppBar(title: const Text('Fitness')),
         body: SingleChildScrollView(
+          
           padding: const EdgeInsets.all(25),
           child: Form(
               key: _formkey,
@@ -44,6 +46,7 @@ class _LoginState extends State<Login> {
                   ),
                   const SizedBox(height: 30),
                   TextFormField(
+                    
                     controller: lgController,
                     onSaved: (value) {
                       email = value!;
@@ -55,11 +58,11 @@ class _LoginState extends State<Login> {
                     keyboardType: TextInputType.emailAddress,
                     style: const TextStyle(
                         fontSize: 20, fontWeight: FontWeight.bold),
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       labelText: 'Email',
                       hintText: 'Enter your email',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -78,11 +81,11 @@ class _LoginState extends State<Login> {
                     obscureText: true,
                     style: const TextStyle(
                         fontSize: 20, fontWeight: FontWeight.bold),
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                       prefixIcon: Icon(Icons.lock),
                       labelText: 'Password',
                       hintText: 'Enter your Password',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
                     ),
                   ),
                   const SizedBox(height: 15),
