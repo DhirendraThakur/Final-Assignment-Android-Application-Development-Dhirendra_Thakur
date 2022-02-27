@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:fitness/http/httpuser.dart';
+import 'package:fitness/http/httputil.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
@@ -13,7 +14,7 @@ import '../response/getsupplement_resp.dart';
 import '../response/getsupplement_resp.dart';
 
 class httpSupplement {
-  final baseurl = 'http://127.0.0.1:3500/';
+  final baseurl = baseUrl;
   String mytoken = HttpConnectUser.token;
 
   Future<String> uploadImage(String filepath, String id) async {

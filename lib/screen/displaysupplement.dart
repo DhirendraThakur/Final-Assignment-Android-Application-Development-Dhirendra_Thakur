@@ -31,7 +31,7 @@ class _DisplaySupplementState extends State<DisplaySupplement> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Information'),
+        title: Text('Supplement Information'),
       ),
       body: FutureBuilder<List<Supplement>>(
         future: futureSupplement,

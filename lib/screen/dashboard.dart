@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
+
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 //import 'package:timezone/timezone.dart' as tz;
 
@@ -68,8 +69,11 @@ class _DashboardState extends State<Dashboard> {
             itemBuilder: (context) => [
               PopupMenuItem<int>(value: 0, child: Text('Product')),
               PopupMenuItem<int>(value: 1, child: Text('Supplement')),
-              PopupMenuItem<int>(value: 2, child: Text('Feedback')),
+              PopupMenuItem<int>(value: 2, child: Text('Sensors')),
             ],
+            onSelected: (value){
+              onSelected(context, value);
+            },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(20.0),
@@ -172,8 +176,7 @@ class _DashboardState extends State<Dashboard> {
           Center(
               child: Padding(
             padding: const EdgeInsets.all(18.0),
-            child: Container(
-                child: Align(
+            child: Align(
               alignment: Alignment.bottomRight,
               child: CircleAvatar(
                 backgroundColor: Colors.blue,
@@ -184,7 +187,7 @@ class _DashboardState extends State<Dashboard> {
                   onPressed: () {},
                 ),
               ),
-            )),
+            ),
           )),
 
           Center(
@@ -225,6 +228,7 @@ class _DashboardState extends State<Dashboard> {
     );
     //default flex is 2
   }
+
 //   Future  notificationSelected(String payload) async {
 //    showDialog(
 //      context: context,
@@ -238,7 +242,13 @@ class _DashboardState extends State<Dashboard> {
   void onSelected(BuildContext context, int item) {
     switch (item) {
       case 0:
-        Navigator.pushNamed(context, '/register');
+        Navigator.pushNamed(context, '/product/add');
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/supplement/add');
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/sensor');
         break;
 
         Future notificationSelected(String payload) async {

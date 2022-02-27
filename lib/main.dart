@@ -5,6 +5,7 @@ import 'package:fitness/screen/firstpage.dart';
 import 'package:fitness/screen/login.dart';
 import 'package:fitness/screen/product.dart';
 import 'package:fitness/screen/register.dart';
+import 'package:fitness/screen/sensor.dart';
 import 'package:fitness/screen/supplement_1.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         "/product/show": (context) => DisplayProduct(),
         "/supplement/add": (context) => SuppleAdd(),
         "/supplement/show": (context) => DisplaySupplement(),
+        "/sensor": (context) => Accelometor()
       },
       // home: RegisterScreen(),
       // home : Dashboard(),

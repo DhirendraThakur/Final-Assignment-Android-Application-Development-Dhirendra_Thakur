@@ -1,15 +1,11 @@
 import 'dart:convert';
+import 'package:fitness/http/httputil.dart';
 import 'package:fitness/model/user.dart';
 import 'package:fitness/response/response.dart';
 import 'package:http/http.dart' as http;
 
 class HttpConnectUser {
-  String baseurl = 'http://127.0.0.1:3500/';
-
-  // String baseurl ='http:localhost:3000/api/v1';
-  //String baseurl ='http://jsonplaceholder.typicode.com/api/v1';
-  //String baseurl ='http:/localhost:3000/api/v1/';
-//  String baseurl = 'localhost:3000/api/v1/';
+  String baseurl = baseUrl;
 
   static String token = '';
 

@@ -15,6 +15,10 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       //backgroundColor: Color(0xfffdfdfdf),
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.fitness_center, color: Colors.white, size: 30),
+          onPressed: () {},
+        ),
         title: Text('Fitness Management'),
       ),
       body: Container(
@@ -32,10 +36,23 @@ class _MainScreenState extends State<MainScreen> {
                 decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
               ),
             ),
-            Form(
-              
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Center(
+                    child: Text(
+                      "Welcome to the Global Fitness",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 27,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     height: 50,
                   ),
@@ -44,19 +61,20 @@ class _MainScreenState extends State<MainScreen> {
                         Navigator.pushNamed(context, '/register');
                       },
                       child: RichText(
-                        textAlign: TextAlign.center,
+                          textAlign: TextAlign.center,
                           text: TextSpan(children: const [
-                        TextSpan(
-                          text: '',
-                          style: TextStyle(fontSize: 20, color: Colors.blue),
-                        ),
-                        TextSpan(
-                            text: 'Sign Up!!!',
-                            style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.red,
-                            ))
-                      ]))),
+                            TextSpan(
+                              text: '',
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.blue),
+                            ),
+                            TextSpan(
+                                text: 'Sign Up!!!',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  color: Colors.red,
+                                ))
+                          ]))),
                   SizedBox(
                     height: 50,
                   ),
@@ -84,61 +102,9 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/product/add');
-                    },
-                    child: RichText(
-                      text: TextSpan(
-                        children: const [
-                          TextSpan(
-                            text: 'Add Product',
-                            style: TextStyle(
-                                fontSize: 20, color: Colors.blueAccent),
-                          ),
-                          TextSpan(
-                            text: '',
-                            style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.purple,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/product/show');
-                    },
-                    child: RichText(
-                      text: TextSpan(
-                        children: const [
-                          TextSpan(
-                            text: 'Show Product',
-                            style: TextStyle(
-                                fontSize: 20, color: Colors.blueAccent),
-                          ),
-                          TextSpan(
-                            text: '',
-                            style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.purple,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
                 ],
               ),
-            ),
+            )
           ],
         ),
       ),

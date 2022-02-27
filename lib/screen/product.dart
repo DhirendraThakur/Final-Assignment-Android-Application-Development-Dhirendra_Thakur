@@ -127,7 +127,7 @@ class _SupplementAddState extends State<SupplementAdd> {
                         productprice: productprice,
                         producttype: producttype,
                       );
-                      HttpProduct().registerProduct(product, _image);
+                      HttpProduct().registerProduct(product, _image!);
                     }
                   },
                   child: Text('Add')),
@@ -138,7 +138,9 @@ class _SupplementAddState extends State<SupplementAdd> {
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/product/show');
+                },
                 child: Text('View Product'),
               ),
             ],

@@ -120,20 +120,20 @@ class _SuppleAddState extends State<SuppleAdd> {
                   height: 30.0,
                 ),
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(double.infinity, 50),
-                    ),
-                    onPressed: () {
-                      _formkey.currentState!.save();
-                      Supplement supplement = Supplement(
-                        supplementname: supplementname,
-                        supplementtype: supplementtype,
-                        supplementrate: supplementrate,
-                      );
-                      print(supplement);
-                      httpSupplement().registerSupplement(supplement);
-                    },
-                    child: Text('Add')),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 50),
+                  ),
+                  onPressed: () {
+                    _formkey.currentState!.save();
+                    Supplement supplement = Supplement(
+                      supplementname: supplementname,
+                      supplementtype: supplementtype,
+                      supplementrate: supplementrate,
+                    );
+                    httpSupplement().registerSupplement(supplement);
+                  },
+                  child: Text('Add'),
+                ),
                 const SizedBox(
                   height: 10,
                 ),
@@ -141,7 +141,9 @@ class _SuppleAddState extends State<SuppleAdd> {
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/supplement/show');
+                    },
                     child: Text('View Supplement')),
               ],
             )),
@@ -152,36 +154,34 @@ class _SuppleAddState extends State<SuppleAdd> {
 
 Widget bottomSheet(BuildContext context, Function() imageFromGallery,
     Function() imageFromCamera) {
-  return Container(
-    child: Column(
-      children: [
-        Text(
-          'Choose picture',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton.icon(
-                onPressed: () {
-                  imageFromCamera();
-                  Navigator.pop(context);
-                },
-                icon: Icon(Icons.image),
-                label: Text('Camera')),
-            ElevatedButton.icon(
-                onPressed: () {
-                  imageFromGallery();
-                  Navigator.pop(context);
-                },
-                icon: Icon(Icons.image),
-                label: Text('Gallery'))
-          ],
-        )
-      ],
-    ),
+  return Column(
+    children: [
+      Text(
+        'Choose picture',
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton.icon(
+              onPressed: () {
+                imageFromCamera();
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.image),
+              label: Text('Camera')),
+          ElevatedButton.icon(
+              onPressed: () {
+                imageFromGallery();
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.image),
+              label: Text('Gallery'))
+        ],
+      )
+    ],
   );
 }

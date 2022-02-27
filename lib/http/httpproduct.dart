@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:fitness/db/ProductDatabase.dart';
 import 'package:fitness/http/httpuser.dart';
+import 'package:fitness/http/httputil.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,23 +15,22 @@ import 'package:sqflite/sqflite.dart';
 import '../response/getproduct_resp.dart';
 
 class HttpProduct {
-  final baseurl = 'http://127.0.0.1:3500/';
+  final baseurl = baseUrl;
   String mytoken = HttpConnectUser.token;
+
   Future<String> uploadImage(String filepath, String id) async {
     try {
-      String route = 'product/' + id + '/photo/upload';
+      String route = 'product/' + id + '/upload';
       String url = baseurl + route;
       var request = http.MultipartRequest('PUT', Uri.parse(url));
-
-      //using the token in the headrs
+      //using the token in the headers
       request.headers.addAll({
         'Authorization': 'Bearer $mytoken',
       });
+      // need a filename
 
-      //need a filename
       var ss = filepath.split('/').last;
-
-      //adding the file in the request
+      // adding the file in the request
       request.files.add(
         http.MultipartFile(
           'file',
@@ -43,12 +43,12 @@ class HttpProduct {
       var response = await request.send();
       var responseString = await response.stream.bytesToString();
       if (response.statusCode == 200) {
-        return responseString;
+        return 'ok';
       }
     } catch (err) {
       log('$err');
     }
-    return 'something went wrong';
+    return 'something goes wrong';
   }
 
   void registerProduct(Product product, File? filepath) async {
@@ -99,17 +99,18 @@ class HttpProduct {
 
   void updateProduct(product, id) async {
     Map<String, dynamic> productMap = {
-      'pid' : id,
+      'pid': id,
       'productname': product.productname,
       'productprice': product.productprice,
       'producttype': product.producttype,
     };
     String tok = 'Bearer $mytoken';
     try {
-      final response = await http
-          .put(Uri.parse(baseurl + 'product/update'), body: productMap, headers: {
-        'Authorization': tok,
-      });
+      final response = await http.put(Uri.parse(baseurl + 'product/update'),
+          body: productMap,
+          headers: {
+            'Authorization': tok,
+          });
       if (response.statusCode == 200) {
         Fluttertoast.showToast(msg: "Data upload Successfully");
       }
@@ -118,7 +119,7 @@ class HttpProduct {
     }
   }
 
-  void deleteProduct(id) async{
+  void deleteProduct(id) async {
     String tok = 'Bearer $mytoken';
     try {
       final response = await http
@@ -131,8 +132,6 @@ class HttpProduct {
       }
     } catch (err) {
       log('Product Delete : $err');
-
     }
-
   }
 }
