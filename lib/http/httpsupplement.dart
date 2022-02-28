@@ -126,8 +126,8 @@ Future<List<Supplement>>? getSupplement() async {
           await http.get(Uri.parse(baseurl + 'product/all'), headers: {
         'Authorization': token,
       });
-      print(response.statusCode);
-      print(jsonDecode(response.body));
+      //print(response.statusCode);
+     // print(jsonDecode(response.body));
       if (response.statusCode == 200) {
         var products = ResponseGetSupplement.fromJson(jsonDecode(response.body));
         return products.data;
@@ -140,14 +140,14 @@ Future<List<Supplement>>? getSupplement() async {
   }
 
  void deleteSupplement(id) async{
-    print(id);
+   // print(id);
     String tok = 'Bearer $mytoken';
     try {
       final response = await http
           .delete(Uri.parse(baseurl + 'supplement/delete/' + id), headers: {
         'Authorization': tok,
       });
-      print(response.statusCode);
+     // print(response.statusCode);
       if (response.statusCode == 200) {
         Fluttertoast.showToast(msg: "Data deleted Successfully");
       }

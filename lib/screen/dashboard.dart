@@ -1,5 +1,7 @@
 //import 'dart:ffi';
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 //import 'package:flutter_svg/flutter_svg.dart';
@@ -51,14 +53,13 @@ class _DashboardState extends State<Dashboard> {
       content: NotificationContent(
           id: 1,
           channelKey: 'key1',
-          title: 'Title for your notification',
-          body: 'body text/ content',
+          title: 'Hello!',
+          body: 'Welcome to our fitness page',
           notificationLayout: NotificationLayout.BigPicture,
           bigPicture:
-          'https://images.idgesg.net/images/article/2019/01/android-q-notification-inbox-100785464-large.jpg?auto=webp&quality=85,70'),
+              'https://images.idgesg.net/images/article/2019/01/android-q-notification-inbox-100785464-large.jpg?auto=webp&quality=85,70'),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +89,7 @@ class _DashboardState extends State<Dashboard> {
               PopupMenuItem<int>(value: 1, child: Text('Supplement')),
               PopupMenuItem<int>(value: 2, child: Text('Sensors')),
             ],
-            onSelected: (value){
+            onSelected: (value) {
               onSelected(context, value);
             },
             shape: RoundedRectangleBorder(
@@ -110,18 +111,21 @@ class _DashboardState extends State<Dashboard> {
       body: Stack(
         children: <Widget>[
           Container(
-              constraints: BoxConstraints.expand(),
-              height: size.height * .0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    alignment: Alignment.topCenter,
-                    image: AssetImage('images/background.jpg'),
-                    fit: BoxFit.scaleDown),
-              ),
-              child: TextField(
+            constraints: BoxConstraints.expand(),
+            height: size.height * .0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  alignment: Alignment.topCenter,
+                  image: AssetImage('images/background.jpg'),
+                  fit: BoxFit.cover),
+            ),
+            child: 
+              TextField(
                 decoration:
                     InputDecoration(fillColor: Colors.amber, filled: true),
-              )),
+              )
+            
+          ),
 
           Container(
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 2.0),
@@ -216,10 +220,10 @@ class _DashboardState extends State<Dashboard> {
                 backgroundColor: Colors.blue,
                 radius: 30,
                 child: IconButton(
-                  icon: Icon(Icons.notification_add,
-                      color: Colors.blue, size: 30),
+                  icon: Icon(Icons.health_and_safety
+                      ),
                   onPressed: () {
-                    print("reached");
+                   // print("reached");
                   },
                 ),
               ),
@@ -244,6 +248,7 @@ class _DashboardState extends State<Dashboard> {
           )
         ],
       ),
+      
     );
     //default flex is 2
   }
@@ -270,6 +275,5 @@ class _DashboardState extends State<Dashboard> {
         Navigator.pushNamed(context, '/sensor');
         break;
     }
-
   }
 }
