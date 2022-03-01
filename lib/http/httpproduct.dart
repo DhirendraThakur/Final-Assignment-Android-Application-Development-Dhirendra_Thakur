@@ -64,11 +64,6 @@ class HttpProduct {
         'Authorization': tok,
       });
       if (response.statusCode == 200) {
-// uploading imgae after data inserted of product
-//         if (filepath != null) {
-//           var jsonData = jsonDecode(response.body);
-//           uploadImage(filepath.path, jsonData['data']['_id']);
-//         }
         var jsonData = jsonDecode(response.body);
         ProductDatabase.instance.create(jsonData['data']);
         Fluttertoast.showToast(msg: "Data upload Successfully");

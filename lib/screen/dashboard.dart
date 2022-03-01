@@ -20,34 +20,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-// FlutterLocalNotificationsPlugin? fltrNotification;
-// @override
-//  void initState() {
-//    super.initState();
-//    var androidInitilize = new AndroidInitializationSettings('app_icon');
-//    var iOSinitilize = new IOSInitializationSettings();
-//    var initilizationsSettings =
-//        new InitializationSettings(android: androidInitilize, iOS: iOSinitilize);
-//    fltrNotification = new FlutterLocalNotificationsPlugin();
-//    fltrNotification!.initialize(initilizationsSettings, onSelectNotification: notificationSelected);
-//  }
-
-// Future _showNotification() async {
-//    var androidDetails = AndroidNotificationDetails(
-//        "Channel ID", "Fitness", importance: Importance.max);
-//    var iSODetails = new IOSNotificationDetails();
-//    var generalNotificationDetails = new NotificationDetails(android: androidDetails, iOS: iSODetails);
-
-  // await fltrNotification.show(
-  //     0, "Task", "You created a Task",
-  //     generalNotificationDetails, payload: "Task");
-
-//     var scheduledTime = DateTime.now().add(Duration(seconds : 5));
-
-//  fltrNotification.sch(1, "Times Uppp", task,
-//      scheduledTime, generalNotificationDetails);
-  //}
-
   void notify() async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -111,20 +83,25 @@ class _DashboardState extends State<Dashboard> {
       body: Stack(
         children: <Widget>[
           Container(
-            constraints: BoxConstraints.expand(),
-            height: size.height * .0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  alignment: Alignment.topCenter,
-                  image: AssetImage('images/background.jpg'),
-                  fit: BoxFit.cover),
-            ),
-            child: 
-              TextField(
+              constraints: BoxConstraints.expand(),
+              height: size.height * .0,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    alignment: Alignment.centerRight,
+                    image: AssetImage('images/background.jpg'),
+                    fit: BoxFit.cover,
+
+                ),
+              ),
+              child: TextField(
                 decoration:
                     InputDecoration(fillColor: Colors.amber, filled: true),
-              )
-            
+              )),
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+            child: Container(
+              decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
+            ),
           ),
 
           Container(
@@ -220,10 +197,9 @@ class _DashboardState extends State<Dashboard> {
                 backgroundColor: Colors.blue,
                 radius: 30,
                 child: IconButton(
-                  icon: Icon(Icons.health_and_safety
-                      ),
+                  icon: Icon(Icons.health_and_safety),
                   onPressed: () {
-                   // print("reached");
+                    // print("reached");
                   },
                 ),
               ),
@@ -248,7 +224,6 @@ class _DashboardState extends State<Dashboard> {
           )
         ],
       ),
-      
     );
     //default flex is 2
   }

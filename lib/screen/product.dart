@@ -45,7 +45,7 @@ class _SupplementAddState extends State<SupplementAdd> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Supplement'),
+        title: Text('Add Product'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
@@ -56,7 +56,7 @@ class _SupplementAddState extends State<SupplementAdd> {
               Container(
                 alignment: Alignment.center,
                 child: Text(
-                  'Add Supplement Details',
+                  'Add Product Details',
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
