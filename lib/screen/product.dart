@@ -32,6 +32,7 @@ class _SupplementAddState extends State<SupplementAdd> {
       _image = File(image!.path);
     });
   }
+  
 
 //method to open image from camera
   _imageFromCamera() async {
@@ -40,7 +41,7 @@ class _SupplementAddState extends State<SupplementAdd> {
       _image = File(image!.path);
     });
   }
-  
+
 
   @override
   Widget build(BuildContext context) {
